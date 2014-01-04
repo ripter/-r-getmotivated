@@ -22,7 +22,6 @@ window.listings = [];
 fetchNewListings()
   .done(function(listings) {
     window.listings = listings;
-    setImageSize();
     render(randomItem(listings));
   });
 
@@ -71,13 +70,26 @@ function getSubUrl() {
 
 // Sets the max height/width so images fit on the screen
 function setImageSize() {
-  var height = $(window).height();
-  var width = $(window).width();
+  var elm = $('#photo');
+  var windowWidth = $(window).width();
+  var windowHeight = $(window).height();
+  var imageHeight = elm.height();
+  var padding = 0
 
-  $('#photo').css({
-    maxWidth: width
-    , maxHeight: height
+  // if the image is smaller than the window
+  // add some padding so it's centered
+  if (windowHeight > imageHeight) {
+    padding = (windowHeight - imageHeight)/2;
+  }
+
+  // Set the max size so large images scale down
+  elm.css({
+    maxWidth: windowWidth
+    , maxHeight: windowHeight
+    , paddingTop: padding
   });
+
+
 }
 
 // Fetch the new listings from Reddit
@@ -122,7 +134,9 @@ function render(listing) {
   // Make sure the page title shows the correct subreddit
   $(document).prop('title', config.sub);
 
-  elm.attr('src', url);
+  elm.attr('src', url).load(function() {
+    setImageSize();
+  });
 }
 
 // stupid simple imgur converter
