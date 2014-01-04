@@ -5,3 +5,7 @@ body {
 .content {
   text-align: center;
 }
+
+#photo {
+	max-width: 100%;
+}
