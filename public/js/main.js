@@ -10,8 +10,8 @@ var config = window.config = {
   , get url() {
     return this.baseUrl +'/r/'+ this.r +'/'+ this.sort +'.json';
   }
-  , rotateSpeed: 5000
-	, fetchSpeed: 1800000 // 30 min
+  , rotateSpeed: 1.8e+6 // 30 min
+	, fetchSpeed: 1.44e+7 // 4 hours
 };
 
 // Start with some listings (posts)
@@ -21,6 +21,13 @@ fetchNewListings()
     window.listings = listings;
     render(randomItem(listings));
   });
+
+// Allow clicks to pick a new image
+$('body').on('click', function() {
+	var listings = window.listings;
+
+	render(randomItem(listings));
+});
 
 // Loop to rotate the image
 setInterval(function() {
@@ -36,6 +43,7 @@ setInterval(function() {
 			window.listings = listings;
     });
 }, config.fetchSpeed);
+
 
 
 // Fetch the new listings from Reddit
