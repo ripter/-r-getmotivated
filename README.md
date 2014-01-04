@@ -16,8 +16,8 @@ Gets the hotest Imgur images from [/r/GetMotivated](http://www.reddit.com/r/GetM
     cd public
     python -m SimpleHTTPServer
 
-    
+
 ##Config
 
     config.r = 'GetMotivated'; // the Subreddit to use
-		config.sort: 'hot'; 'hot', 'new', 'random'
+    config.sort: 'hot'; 'hot', 'new', 'random'
