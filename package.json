@@ -1,0 +1,19 @@
+{
+  "name": "-r-getmotivated",
+  "version": "0.0.0",
+  "description": "-r-getmotivated ===============",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ripter/-r-getmotivated.git"
+  },
+  "author": "Chris Richards",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ripter/-r-getmotivated/issues"
+  },
+  "homepage": "https://github.com/ripter/-r-getmotivated",
+	"dependencies": {
+		"express": "~3"
+	}
+}
