@@ -14,11 +14,15 @@ var config = window.config = {
   , fetchSpeed: 1.44e+7 // 4 hours
 };
 
+//
+// MAin
+//
 // Start with some listings (posts)
 window.listings = [];
 fetchNewListings()
   .done(function(listings) {
     window.listings = listings;
+    setImageSize();
     render(randomItem(listings));
   });
 
@@ -27,6 +31,12 @@ $('body').on('click', function() {
   var listings = window.listings;
 
   render(randomItem(listings));
+});
+
+// Use the window size to make the images to display better
+$(window).on('resize', function() {
+	console.log('resize');
+  setImageSize();
 });
 
 // Loop to rotate the image
@@ -45,6 +55,17 @@ setInterval(function() {
 }, config.fetchSpeed);
 
 
+
+// Sets the max height/width so images fit on the screen
+function setImageSize() {
+	var height = $(window).height();
+	var width = $(window).width();
+
+	$('#photo').css({
+		maxWidth: width
+		, maxHeight: height
+	});
+}
 
 // Fetch the new listings from Reddit
 // returns a $.Deferred
